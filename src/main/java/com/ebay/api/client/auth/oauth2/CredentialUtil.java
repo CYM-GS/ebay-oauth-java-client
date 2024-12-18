@@ -114,6 +114,13 @@ public class CredentialUtil {
             }
         }
     }
+    
+    public static void addCredentials(String appid, String certid, String devid, String redirecturi, Environment environment) {
+    	Map<String, String> subValues = Map.of("appid", appid, "certid", certid, "devid", devid, "redirecturi", redirecturi);
+    	Credentials credentials = new Credentials(subValues);
+        logger.debug(String.format("adding for %s - %s", environment, credentials.toString()));
+        envCredentialsMap.put(environment, credentials);
+    }
 
     public static String dump() {
         return envCredentialsMap.toString();
